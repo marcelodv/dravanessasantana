@@ -69,6 +69,7 @@
 
         .nav-container {
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
             height: 80px;
@@ -113,13 +114,14 @@
         /* Hero Section (Parallax) */
         .hero {
             position: relative;
-            height: 100vh;
+            height: 50vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: var(--color-white);
             overflow: hidden;
+            color: var(--color-white);
             background: var(--color-dark);
         }
 
@@ -139,10 +141,23 @@
 
         .hero-content {
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             z-index: 2;
             padding: 2rem;
             background: rgba(28, 43, 58, 0.7);
             border-radius: 10px;
+        }
+
+        .hero img {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            clip-path: inset(0 0 7rem 0);
+            margin-bottom: -5rem;
         }
 
         .hero h1 {
@@ -167,6 +182,11 @@
         }
 
         .contact-section {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 20rem;
             background-color: var(--color-dark);
             color: var(--color-white);
         }
@@ -302,8 +322,11 @@
 
         /* Footer */
         footer {
-            background-color: var(--color-dark);
-            color: var(--color-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* background-color: var(--color-dark); */
+            color: var(--color-dark);
             padding: 40px 0;
             text-align: center;
         }
@@ -315,10 +338,10 @@
         .footer-logo {
             font-family: var(--font-title);
             font-size: 1.2rem;
-            color: var(--color-white);
+            color: var(--color-dark);
         }
         .social-media a {
-            color: var(--color-white);
+            color: var(--color-dark);
             font-size: 1.5rem;
             margin: 0 10px;
             transition: color 0.3s ease;
@@ -353,6 +376,10 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .logo {
+                font-size: 1rem;
+            }
+
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -408,8 +435,8 @@
         <section class="hero" id="hero">
             <div class="hero-background" style="background-image: url('https://images.unsplash.com/photo-1616710777598-a28a39a04a62?q=80&w=1740&auto=format&fit=crop');"></div>
             <div class="hero-content animate-on-scroll">
-                <h1 class="animate-on-scroll">VANESSA SANTANA</h1>
-                <p class="animate-on-scroll">ADVOCACIA E CONSULTORIA</p>
+                <img class="animate-on-scroll" src="./assets/logo/logo-transparente-2.png" alt="">
+                <!-- <p class="animate-on-scroll">ADVOCACIA E CONSULTORIA</p> -->
             </div>
         </section>
 
@@ -418,7 +445,7 @@
                 <h2 class="section-title animate-on-scroll">Sobre Nós</h2>
                 <div class="about-content">
                     <div class="about-image-container animate-on-scroll animate-from-left">
-                        <img src="https://images.unsplash.com/photo-1549488349-e587d6928236?q=80&w=1740&auto=format&fit=crop" alt="Advogada Vanessa Santana" class="about-image">
+                        <img src="./assets/images/vanessa-1.jpg" alt="Advogada Vanessa Santana" class="about-image">
                     </div>
                     <div class="about-text animate-on-scroll animate-from-right">
                         <p>A Dra. Vanessa Santana é uma advogada dedicada e apaixonada por justiça. Com vasta experiência em diversas áreas do Direito, nosso escritório oferece soluções jurídicas personalizadas e eficazes para clientes em todo o país.</p>
@@ -507,8 +534,10 @@
             </div>
         </section>
 
-        <section class="contact-section" id="contact">
-            <div class="container text-center animate-on-scroll">
+        <section class="contact-section" id="contact" >
+            <img src="./assets/logo/logo-transparente-3.png">
+
+            <div class="container text-center animate-on-scroll" >
                 <h2 class="section-title text-light-bg">Entre em Contato</h2>
                 <p class="animate-on-scroll">Estamos prontos para ouvir sua história e ajudá-lo a encontrar a melhor solução jurídica.</p>
                 <a href="https://wa.me/5599999999999" class="whatsapp-contact-button animate-on-scroll" target="_blank">
@@ -522,10 +551,10 @@
     <footer>
         <div class="container footer-content">
             <div class="footer-logo">VANESSA SANTANA ADVOCACIA E CONSULTORIA</div>
-            <div class="social-media">
+            <!-- <div class="social-media">
                 <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-            </div>
+            </div> -->
         </div>
         <div class="copyright container">
             <p>&copy; 2025 Vanessa Santana. Todos os direitos reservados.</p>
