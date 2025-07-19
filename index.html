@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanessa Santana Advocacia e Consultoria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --color-dark: #1C2B3A;
+            --color-light-bg: #EFE9E2;
+            --color-white: #FFFFFF;
+            --color-accent-light: #EAD198;
+            --color-accent-dark: #9D7238;
+            --font-title: 'Cinzel Decorative', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-dark);
+            background-color: var(--color-light-bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--color-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .text-accent { color: var(--color-accent-dark); }
+        .text-white { color: var(--color-white); }
+        .text-light-bg { color: var(--color-light-bg); }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-dark);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--color-accent-dark);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background: var(--color-dark);
+            margin-bottom: 4px;
+            border-radius: 5px;
+        }
+
+        /* Hero Section (Parallax) */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--color-white);
+            overflow: hidden;
+            background: var(--color-dark);
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 110%;
+            background-image: url('https://images.unsplash.com/photo-1616710777598-a28a39a04a62?q=80&w=1740&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            transform: translateY(0);
+            will-change: transform;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            background: rgba(28, 43, 58, 0.7);
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-title);
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+
+        /* Section styles */
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .about-section, .services-section {
+            background-color: var(--color-light-bg);
+        }
+
+        .contact-section {
+            background-color: var(--color-dark);
+            color: var(--color-white);
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .about-image-container {
+            flex: 1;
+            text-align: center;
+        }
+        .about-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .about-text {
+            flex: 2;
+        }
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .service-card {
+            background-color: var(--color-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .service-icon {
+            font-size: 3rem;
+            color: var(--color-accent-dark);
+            margin-bottom: 15px;
+        }
+        .service-card h3 {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+        .service-card p {
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+        .faq-item {
+            background-color: var(--color-white);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .faq-question:hover {
+            background-color: #f9f5f1;
+        }
+        .faq-question i {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            color: #555;
+        }
+        .faq-answer.expanded {
+            max-height: 200px; /* Adjust as needed */
+            padding: 20px;
+        }
+
+        /* New WhatsApp Button Style */
+        .whatsapp-contact-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #5a8cbe;
+            color: var(--color-white);
+            padding: 15px 30px;
+            border-radius: 10px; /* Mais arredondado */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Sombra para profundidade */
+        }
+
+        .whatsapp-contact-button:hover {
+            background-color: #6ea9e4;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .whatsapp-contact-button i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-dark);
+            color: var(--color-white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-logo {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            color: var(--color-white);
+        }
+        .social-media a {
+            color: var(--color-white);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .social-media a:hover {
+            color: var(--color-accent-light);
+        }
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .animate-from-left {
+            transform: translateX(-50px);
+        }
+        .animate-from-right {
+            transform: translateX(50px);
+        }
+        .animate-from-left.in-view, .animate-from-right.in-view {
+            transform: translateX(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(5px);
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#hero" class="logo">VANESSA SANTANA ADVOCACIA</a>
+            <nav class="nav-links">
+                <a href="#about">Sobre</a>
+                <a href="#services">Áreas de Atuação</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contato</a>
+            </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="hero">
+            <div class="hero-background" style="background-image: url('https://images.unsplash.com/photo-1616710777598-a28a39a04a62?q=80&w=1740&auto=format&fit=crop');"></div>
+            <div class="hero-content animate-on-scroll">
+                <h1 class="animate-on-scroll">VANESSA SANTANA</h1>
+                <p class="animate-on-scroll">ADVOCACIA E CONSULTORIA</p>
+            </div>
+        </section>
+
+        <section class="about-section" id="about">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Sobre Nós</h2>
+                <div class="about-content">
+                    <div class="about-image-container animate-on-scroll animate-from-left">
+                        <img src="https://images.unsplash.com/photo-1549488349-e587d6928236?q=80&w=1740&auto=format&fit=crop" alt="Advogada Vanessa Santana" class="about-image">
+                    </div>
+                    <div class="about-text animate-on-scroll animate-from-right">
+                        <p>A Dra. Vanessa Santana é uma advogada dedicada e apaixonada por justiça. Com vasta experiência em diversas áreas do Direito, nosso escritório oferece soluções jurídicas personalizadas e eficazes para clientes em todo o país.</p>
+                        <p>Nossa missão é fornecer um serviço de excelência, pautado na ética, transparência e no compromisso com o sucesso de cada caso. Entendemos que cada situação é única, e por isso, dedicamos tempo para ouvir e entender as necessidades de nossos clientes, garantindo a melhor estratégia e representação legal.</p>
+                        <p>Atuamos em todas as áreas, com especial atenção ao direito cível, trabalhista e de família, sempre buscando o melhor resultado, seja por via judicial ou extrajudicial. Nosso objetivo é ser o seu parceiro de confiança na busca por seus direitos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section" id="services">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Áreas de Atuação</h2>
+                <div class="services-grid">
+                    <div class="service-card animate-on-scroll animate-from-left">
+                        <i class="fas fa-gavel service-icon"></i>
+                        <h3>Direito Cível</h3>
+                        <p>Assessoria e representação em questões de contratos, responsabilidade civil, direitos do consumidor, e disputas de propriedade.</p>
+                    </div>
+                    <div class="service-card animate-on-scroll">
+                        <i class="fas fa-users service-icon"></i>
+                        <h3>Direito de Família</h3>
+                        <p>Atuação em divórcios, pensão alimentícia, guarda de filhos, união estável e inventários, com sensibilidade e discrição.</p>
+                    </div>
+                    <div class="service-card animate-on-scroll animate-from-right">
+                        <i class="fas fa-briefcase service-icon"></i>
+                        <h3>Direito Trabalhista</h3>
+                        <p>Defesa dos direitos de empregados e empregadores, incluindo verbas rescisórias, horas extras, insalubridade e justa causa.</p>
+                    </div>
+                    <div class="service-card animate-on-scroll animate-from-left">
+                        <i class="fas fa-building service-icon"></i>
+                        <h3>Direito Imobiliário</h3>
+                        <p>Análise e elaboração de contratos de compra e venda, locação, regularização de imóveis e assessoria em negociações.</p>
+                    </div>
+                    <div class="service-card animate-on-scroll">
+                        <i class="fas fa-shield-alt service-icon"></i>
+                        <h3>Direito do Consumidor</h3>
+                        <p>Proteção dos direitos dos consumidores contra práticas abusivas, publicidade enganosa, produtos defeituosos e cobranças indevidas.</p>
+                    </div>
+                    <div class="service-card animate-on-scroll animate-from-right">
+                        <i class="fas fa-handshake service-icon"></i>
+                        <h3>Consultoria Jurídica</h3>
+                        <p>Orientação e pareceres técnicos para pessoas físicas e jurídicas, visando a prevenção de litígios e a segurança de suas decisões.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <h2 class="section-title text-center animate-on-scroll">Perguntas Frequentes</h2>
+                <div class="faq-container animate-on-scroll">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            O que é uma consultoria jurídica? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>A consultoria jurídica é um serviço de orientação legal preventiva. Nela, o advogado analisa sua situação, esclarece dúvidas e indica o melhor caminho a seguir para evitar problemas futuros, seja em contratos, negócios ou questões familiares.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Preciso de advogado para divórcio consensual? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim, mesmo em um divórcio consensual, a lei exige a presença de um advogado para garantir que todos os direitos das partes, incluindo os filhos, sejam respeitados e que o processo seja homologado corretamente pelo juiz ou tabelião.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Quanto custa um serviço de advocacia? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Os honorários advocatícios variam de acordo com a complexidade do caso, a área de atuação e o tempo estimado para a conclusão. O valor é acordado em contrato após a análise inicial do seu problema, garantindo transparência e segurança.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Qual a importância do advogado em questões trabalhistas? <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>O advogado trabalhista é fundamental para defender os direitos tanto de empregados quanto de empregadores. Ele garante que as normas da CLT sejam cumpridas, auxiliando em rescisões, negociações sindicais e representação em ações judiciais.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <div class="container text-center animate-on-scroll">
+                <h2 class="section-title text-light-bg">Entre em Contato</h2>
+                <p class="animate-on-scroll">Estamos prontos para ouvir sua história e ajudá-lo a encontrar a melhor solução jurídica.</p>
+                <a href="https://wa.me/5599999999999" class="whatsapp-contact-button animate-on-scroll" target="_blank">
+                    <i class="fab fa-whatsapp"></i> QUERO FALAR AGORA MESMO!
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">VANESSA SANTANA ADVOCACIA E CONSULTORIA</div>
+            <div class="social-media">
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="copyright container">
+            <p>&copy; 2025 Vanessa Santana. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const parallaxBg = document.querySelector('.hero-background');
+            const sectionsToAnimate = document.querySelectorAll('.animate-on-scroll');
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            // Parallax Effect
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.pageYOffset;
+                if (parallaxBg) {
+                    parallaxBg.style.transform = `translateY(${scrollPosition * 0.4}px)`;
+                }
+            });
+
+            // Scroll Animations with IntersectionObserver
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, observerOptions);
+
+            sectionsToAnimate.forEach(el => observer.observe(el));
+
+            // FAQ functionality
+            faqQuestions.forEach(item => {
+                item.addEventListener('click', () => {
+                    const answer = item.nextElementSibling;
+                    const isActive = item.classList.contains('active');
+
+                    // Close all other open answers
+                    faqQuestions.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.nextElementSibling.classList.remove('expanded');
+                        }
+                    });
+
+                    // Toggle current one
+                    item.classList.toggle('active');
+                    answer.classList.toggle('expanded');
+                });
+            });
+
+            // Mobile menu toggle
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Smooth scroll for nav links
+            document.querySelectorAll('a, .logo').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                    // Close menu on click
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
