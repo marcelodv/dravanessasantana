@@ -156,7 +156,7 @@
 
     .hero img {
         /* clip-path e margin-bottom removidos para melhor adaptação móvel, serão ajustados via media query */
-        max-width: 300px; /* Tamanho da logo no hero */
+        max-width: 400px; /* Tamanho da logo no hero */
         height: auto;
         margin-bottom: 0; /* Reset */
     }
@@ -393,10 +393,6 @@
 
     /* Para tablets e celulares grandes (até 768px de largura) */
     @media (max-width: 768px) {
-        .container {
-            padding: 0 15px; /* Reduz o padding lateral em telas menores */
-        }
-
         .logo {
             font-size: 1.2rem; /* Diminui o tamanho da logo no header */
         }
@@ -443,7 +439,7 @@
             padding: 1.5rem; /* Menor padding para o conteúdo do hero */
         }
         .hero img {
-            max-width: 200px; /* Reduz o tamanho da logo no hero */
+            max-width: 50%; /* Reduz o tamanho da logo no hero */
             clip-path: none; /* Remove o clip-path */
             margin-bottom: 1rem; /* Adiciona uma margem inferior para separar do texto */
         }
@@ -554,8 +550,37 @@
 
     /* Para celulares pequenos (até 480px de largura) */
     @media (max-width: 480px) {
+        html {
+            overflow-x: hidden;
+        }
+        
+        header {
+            max-width: 480px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            height: 70px; /* Ajusta altura do header */
+            max-width: 480px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .container {
-            padding: 0 10px; /* Ainda mais justo em celulares pequenos */
+            max-width: 480px;
         }
 
         .logo {
@@ -565,12 +590,13 @@
         /* Hero Section */
         .hero {
             height: 55vh;
+            max-width: 480px;
         }
         .hero-content {
             padding: 1rem;
         }
         .hero img {
-            max-width: 150px; /* Logo bem pequena no hero */
+            max-width: 100%; /* Logo bem pequena no hero */
         }
         .hero h1 {
             font-size: 2rem; /* Título principal menor */
@@ -621,7 +647,8 @@
 
         /* Contato */
         .contact-section img {
-            max-width: 150px;
+            display: none;
+            max-width: 250px;
         }
         .whatsapp-contact-button {
             padding: 10px 20px;
